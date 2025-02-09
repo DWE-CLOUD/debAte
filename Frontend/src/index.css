@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9),
+    rgba(30, 41, 59, 0.9),
+    rgba(15, 23, 42, 0.9)
+  );
+  background-size: 200% 200%;
+  animation: gradientBG 15s ease infinite;
+}
+
+.matrix-rain {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  font-family: monospace;
+  opacity: 0.05;
+  transition: opacity 0.3s ease;
+}
+
+.matrix-rain:hover {
+  opacity: 0.1;
+}
+
+.matrix-column {
+  display: flex;
+  flex-direction: column;
+  animation: rain 20s linear infinite;
+  transform-origin: top;
+}
+
+.matrix-column span {
+  animation: glow 1.5s linear infinite;
+  text-shadow: 0 0 8px #10b981;
+}
+
+.card {
+  @apply bg-gray-900/80 backdrop-blur-sm rounded-xl border border-emerald-500/20;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  @apply border-emerald-500/40;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.1);
+}
+
+.metric-bar {
+  @apply bg-gray-800 h-2 rounded-full overflow-hidden;
+  position: relative;
+}
+
+.metric-bar-fill {
+  @apply h-full rounded-full;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes rain {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-500/50 rounded-full;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-emerald-400;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply backdrop-blur-md bg-gray-900/40;
+  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.1);
+}
